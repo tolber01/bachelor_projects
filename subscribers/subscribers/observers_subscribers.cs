@@ -18,6 +18,11 @@ namespace subscribers
             subscribersList = new List<ISubscriber>();
         }
 
+        public List<ISubscriber> SubsList
+        {
+            get { return new List<ISubscriber>(subscribersList); }
+        }
+
         public void RunTimer(string timerMsg, int timeMilliseconds)
         {
             if (timeMilliseconds <= 0)
@@ -54,6 +59,11 @@ namespace subscribers
             logs = new List<string>();
         }
 
+        public List<string> LogsList
+        {
+            get { return new List<string>(logs); }
+        }
+
         void ISubscriber.Notify(string msg)
         {
             logs.Add(msg);
@@ -73,6 +83,7 @@ namespace subscribers
         private StreamWriter fileWriter;
         private string writeFilePath;
         private bool toRewrite;
+
         public FileWriter(string filePath, bool rewrite = true)
         {
             writeFilePath = filePath;
